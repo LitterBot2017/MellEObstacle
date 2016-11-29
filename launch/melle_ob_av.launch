@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <launch>
   <node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node">
-    <param name="_port" value="/dev/ttyACM0" />
+    <param name="_port" value="/dev/ttyACM1" />
   </node>
   <node name="obav.py" pkg="melle_obstacle_avoidance" type="obav.py">
   </node>
