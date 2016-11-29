@@ -1,0 +1,4 @@
+To setup:
+
+sudo apt-get install ros-indigo-hokuyo-node
+
