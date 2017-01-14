@@ -5,5 +5,5 @@
   </node>
   <node name="obav.py" pkg="melle_obstacle_avoidance" type="obav.py">
   </node>
-  
+  <rosparam param="hokuyo_node/port">/dev/ttyACM1</rosparam>
 </launch>

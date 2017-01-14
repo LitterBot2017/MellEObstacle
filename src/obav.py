@@ -18,7 +18,14 @@ def callback(stuff):
 	rightWeight = 0.0
 	command = 0
 
-	if min(stuff.ranges[160:360]) < 1 or min(stuff.ranges[40:480]) < 0.5 :
+	#stop if something is in either testicle
+
+	if min(stuff.ranges[40:180]) < 0.5 and min(stuff.ranges[340:480]) < 0.5:
+		command = 3
+
+
+
+	elif min(stuff.ranges[160:360]) < 1 or min(stuff.ranges[40:480]) < 0.5 :
 
 		# Penis
 		i = 160
