@@ -3,14 +3,12 @@
 import rospy
 import hokuyo_node
 import numpy as np
+import math
 from std_msgs.msg import String
 from sensor_msgs.msg import LaserScan
 from melle_obstacle_avoidance.msg import ObAvData
 
-# Commands:
-# 0 = go
-# 1 = right
-# 2 = left
+
 
 ob_av_data_pub = None
 
@@ -30,11 +28,29 @@ def callback(stuff):
 	strengthVec = 1/strengthVec
 
 	for i in iter:
-		directionVec[0][i] = stuff.angle_min + angle_increment*i
-		weightVec[0][i] = 3/stuff.ranges[i]
+		if not math.isnan(stuff.angle_min + stuff.angle_increment*i) and not math.isnan(3/(1+stuff.ranges[i])):
+			directionVec[0][i] = stuff.angle_min + stuff.angle_increment*i
+			weightVec[0][i] = 3/(1+stuff.ranges[i])
+			#rospy.loginfo(directionVec[0][i])
+
+
+	
 
 
 
+	xDirVec = np.cos(directionVec)
+	yDirVec = np.sin(directionVec)
+
+	totalX = np.sum(xDirVec*weightVec)
+	totalY = np.sum(yDirVec*weightVec)
+	totalDir = np.arctan(totalY/totalX)
+	totalMag = math.sqrt(totalX*totalX + totalY*totalY)
+	rospy.loginfo(totalDir)
+	rospy.loginfo(totalMag)
+
+	#rospy.loginfo(directionVec)
+
+'''
 
 	#stop if something is in either testicle
 
@@ -84,7 +100,7 @@ def callback(stuff):
 	msg.command = command
 
 	ob_av_data_pub.publish(msg)
-
+'''
 '''
 def callback(stuff):
 	ranges = stuff.ranges
@@ -105,8 +121,8 @@ def laser_reader():
     rospy.init_node('laser_reader', anonymous=True)
 
     rospy.Subscriber("/scan",LaserScan,callback)
-    global ob_av_data_pub 
-    ob_av_data_pub = rospy.Publisher("/ob_av_data", ObAvData)
+   # global ob_av_data_pub 
+   # ob_av_data_pub = rospy.Publisher("/ob_av_data", ObAvData)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
