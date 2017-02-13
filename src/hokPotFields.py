@@ -45,7 +45,10 @@ def callback(stuff):
 	totalY = np.sum(yDirVec*weightVec)
 	totalDir = np.arctan(totalY/totalX)
 	totalMag = math.sqrt(totalX*totalX + totalY*totalY)
-	rospy.loginfo(totalDir)
+	dirDeg = np.rad2deg(totalDir)
+	negDir = totalDir - np.pi
+	negDirDeg = np.rad2deg(negDir)
+	rospy.loginfo(dirDeg)
 	rospy.loginfo(totalMag)
 
 	#rospy.loginfo(directionVec)
