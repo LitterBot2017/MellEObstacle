@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <launch>
   <node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node">
-    <param name="_port" value="/dev/ttyACM1" />
+    <param name="_port" value="/dev/hokuyo" />
   </node>
-  <node name="obstacle_avoidance" pkg="melle_obstacle_avoidance" type="obs_avoid.py">
+  <node name="obstacle_avoidance" pkg="melle_obstacle_avoidance" type="hokPotFields.py">
   </node>
-  <rosparam param="hokuyo_node/port">/dev/ttyACM1</rosparam>
+  <rosparam param="hokuyo_node/port">/dev/hokuyo</rosparam>
 </launch>
