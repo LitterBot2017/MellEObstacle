@@ -6,11 +6,11 @@ import numpy as np
 import math
 from std_msgs.msg import String
 from sensor_msgs.msg import LaserScan
-from melle_obstacle_avoidance.msg import ObAvData
+from obstacle_avoidance.msg import ObstacleHeading
 
 
 
-ob_av_data_pub = None
+desired_heading_publisher = None
 
 def callback(stuff):
 	leftWeight = 0.0
@@ -42,10 +42,15 @@ def callback(stuff):
 	dirDeg = np.rad2deg(totalDir)
 	negDir = totalDir - np.pi
 	negDirDeg = np.rad2deg(negDir)
-	msg = ObAvData()
+	if math.isnan(dirDeg):
+		dirDeg = 0
+
+
+
+	msg = ObstacleHeading()
 	msg.direction = dirDeg
 	msg.magnitude = totalMag
-	ob_av_data_pub.publish(msg)
+	desired_heading_publisher.publish(msg)
 	rospy.loginfo(dirDeg)
 	rospy.loginfo(totalMag)
 
@@ -60,8 +65,8 @@ def laser_reader():
     rospy.init_node('laser_reader', anonymous=True)
 
     rospy.Subscriber("/scan",LaserScan,callback)
-    global ob_av_data_pub 
-    ob_av_data_pub = rospy.Publisher("/ob_av_data", ObAvData)
+    global desired_heading_publisher 
+    desired_heading_publisher = rospy.Publisher("/obstacle_heading", ObstacleHeading)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()

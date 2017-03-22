@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(melle_obstacle_avoidance)
+project(obstacle_avoidance)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -58,7 +58,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
   FILES
-  ObAvData.msg
+  ObstacleHeading.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -112,7 +112,7 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES melle_obstacle_avoidance
+#  LIBRARIES obstacle_avoidance
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 	CATKIN_DEPENDS message_runtime
@@ -127,24 +127,24 @@ catkin_package(
 # include_directories(include)
 
 ## Declare a C++ library
-# add_library(melle_obstacle_avoidance
-#   src/${PROJECT_NAME}/melle_obstacle_avoidance.cpp
+# add_library(obstacle_avoidance
+#   src/${PROJECT_NAME}/obstacle_avoidance.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(melle_obstacle_avoidance ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(obstacle_avoidance ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(melle_obstacle_avoidance_node src/melle_obstacle_avoidance_node.cpp)
+# add_executable(obstacle_avoidance_node src/obstacle_avoidance_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(melle_obstacle_avoidance_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(obstacle_avoidance_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(melle_obstacle_avoidance_node
+# target_link_libraries(obstacle_avoidance_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -163,7 +163,7 @@ catkin_package(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS melle_obstacle_avoidance melle_obstacle_avoidance_node
+# install(TARGETS obstacle_avoidance obstacle_avoidance_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -188,7 +188,7 @@ catkin_package(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_melle_obstacle_avoidance.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_obstacle_avoidance.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
