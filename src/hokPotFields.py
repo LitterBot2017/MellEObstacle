@@ -25,7 +25,7 @@ def callback(stuff):
 	weightVec = strengthVec
 
 	strengthVec = strengthVec + stuff.ranges
-	strengthVec = 1/strengthVec
+	strengthVec = 1/(strengthVec*strengthVec*strengthVec)
 
 	for i in iter:
 		if not math.isnan(stuff.angle_min + stuff.angle_increment*i) and not math.isnan(3/(1+stuff.ranges[i])):
