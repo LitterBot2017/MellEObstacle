@@ -27,10 +27,15 @@ def callback(stuff):
 	strengthVec = strengthVec + stuff.ranges
 	strengthVec = 1/(strengthVec*strengthVec*strengthVec)
 
+
+
 	for i in iter:
 		if not math.isnan(stuff.angle_min + stuff.angle_increment*i) and not math.isnan(3/(1+stuff.ranges[i])):
 			directionVec[0][i] = stuff.angle_min + stuff.angle_increment*i
 			weightVec[0][i] = 3/(1+stuff.ranges[i])
+			if stuff.ranges[i] > 5:
+				weightVec[0][i] = 0
+
 
 	xDirVec = np.cos(directionVec)
 	yDirVec = np.sin(directionVec)
