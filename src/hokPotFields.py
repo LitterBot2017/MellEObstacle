@@ -41,7 +41,7 @@ def callback(stuff):
 			if not math.isnan(currAngle) and not math.isnan(3/(1+stuff.ranges[i])):
 				strengthVec[0][j] = 1/(stuff.ranges[i])
 				directionVec[0][j] = stuff.angle_min + stuff.angle_increment*i
-				weightVec[0][j] = 1/(1+stuff.ranges[i]*stuff.ranges[i])#3/(1+stuff.ranges[i])
+				weightVec[0][j] = 1/((1+stuff.ranges[i])*(1+stuff.ranges[i]))#3/(1+stuff.ranges[i])
 				if stuff.ranges[i] > maxRangeMeters:
 					weightVec[0][j] = 0
 				j = j + 1
